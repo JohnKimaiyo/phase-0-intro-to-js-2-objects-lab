@@ -1,56 +1,32 @@
-//This function should not mutate the employee; it should return a new Object that has an updated value for the key passed in. Hint: use the spread operator!
-var employee = {
-  name: "Sam",
-  address: "Oloo st",
+const employee = {
+  name: "Max",
+  streetAddress: "5 Main Street",
 };
 
-function destructivelyUpdateEmployeeWithKeyAndValue() {
-  var employee = {
-    name: "Sam",
-    streetAddressaddress: "Oloo st",
-  };
-  console.log(employee);
-}
-destructivelyUpdateEmployeeWithKeyAndValue();
-//destructivelyUpdateEmployeeWithKeyAndValue(): this function should work the same as updateEmployeeWithKeyAndValue() but it should mutate the employee Object passed in.'
-
-function updateEmployeeWithKeyAndValue() {
-  var clonedemployee = { ...employee };
-  employee.address = "11 Broadway";
-
-  console.log(employee.address);
+function updateEmployeeWithKeyAndValue(employee, key, value) {
+  // Alternate using ES6 Spread operators:
+  // return { ...employee, ...{ [key]: value } }
+  return Object.assign({}, employee, { [key]: value });
 }
 
-updateEmployeeWithKeyAndValue();
+function destructivelyUpdateEmployeeWithKeyAndValue(employee, key, value) {
+  employee[key] = value;
 
-//describe('destructivelyUpdateEmployeeWithKeyAndValue(employee, key, value)', function () {
-//// it('updates `employee` with the given `key` and `value` (it is destructive) and returns the entire updated employee', function () {
-//   expect(destructivelyUpdateEmployeeWithKeyAndValue(employee, 'streetAddress', '12 Broadway')).to.eql({
-///    name: 'Sam',
-//    streetAddress: '12 Broadway'
-function updateEmployeeWithKeyAndValue() {
-  var updatedemployee = { ...employee, streetaddress: "11 Broadway" };
-  console.log(updatedemployee);
+  return employee;
 }
-updateEmployeeWithKeyAndValue();
 
-// deleteFromEmployeeByKey(): this function should take in a employee Object and a key. It should delete the property with that key from the employee Object. This should not mutate the original employee Object; it should return a new Object that doesn't include the identified key-value pair. Hint: use the spread operator!
-function deleteFromEmployeeByKey() {
-  var deleteemplotte = {
-    ...employee,
-    streetadrees: "12 broadway",
-    name: "john",
-  };
-  console.log(deleteFromEmployeeByKey);
+function deleteFromEmployeeByKey(employee, key) {
+  // Alternate using ES6 Spread operators:
+  // const newObj = { ...employee }
+  const newObj = Object.assign({}, employee);
+
+  delete newObj[key];
+
+  return newObj;
 }
-deleteFromEmployeeByKey();
 
-//destructivelyDeleteFromEmployeeByKey(): this function should work the same as deleteFromEmployeeByKey() but it should mutate the employee Object.
+function destructivelyDeleteFromEmployeeByKey(employee, key) {
+  delete employee[key];
 
-function deleteFromEmployeeByKey() {
-  var newemployee = { ...employee };
-  delete employee.name.streetAddressaddress;
-  if (typeof employee.name.streetAddressaddress === "undefined")
-    console.log("name , streetaddress is  undefined");
+  return employee;
 }
-deleteFromEmployeeByKey();
